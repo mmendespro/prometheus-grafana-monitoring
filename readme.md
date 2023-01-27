@@ -48,3 +48,11 @@ management:
     prometheus:
       enabled: true
 ```
+
+## SETUP PROMETHEUS AND GRAFANA CONTAINERS
+
+With the comand line below you start all the containers: grafana and prometheus
+
+```shell-script
+docker-compose -f docker-compose.monitoring.yaml up -d
+```
