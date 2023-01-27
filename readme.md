@@ -10,7 +10,7 @@ There are a few reasons why we want visibility in our highly distributed systems
 - It keeps us accountable.
 - Reduce the mean time to resolution (MTTR).
 
-In this poc I will explain the core concepts of Prometheus and Grafana and set up a demo project, so you can see how to do and implement monitoring in your own applications.
+In this poc I will setup a docker-compose file of Prometheus and Grafana and a demo project, so you can see how to do and implement monitoring in your own applications.
 
 ## SETUP SPRING BOOT
 
