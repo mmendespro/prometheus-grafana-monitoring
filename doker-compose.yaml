@@ -1,0 +1,38 @@
+version: '3.4'
+
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    user: root
+    container_name: prometheus
+    hostname: prometheus
+    restart: unless-stopped
+    volumes:
+      - ./configs/prometheus:/etc/prometheus
+      - ./configs/prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+    ports:
+      - 9090:9090
+    networks:
+      - metrics-net
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    hostname: grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource,grafana-worldmap-panel,percona-percona-app
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    networks:
+      - metrics-net
+
+networks:
+  metrics-net:
+    name: metrics-net
+    driver: bridge
